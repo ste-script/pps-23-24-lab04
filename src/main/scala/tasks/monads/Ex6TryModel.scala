@@ -54,6 +54,8 @@ object Ex6TryModel:
 
   assert(success(20).map(_ + 10).getOrElse(-1) == 30)
   assert(result2.getOrElse(-1) == -1)
+  println(result2.getOrElse(-1))
+
 
   val result3 = for
     a <- exec(10)
