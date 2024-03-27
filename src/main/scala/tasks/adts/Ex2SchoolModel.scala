@@ -29,18 +29,14 @@ object SchoolModel:
       def setTeacherToCourse(teacher: Teacher, course: Course): School
       def coursesOfATeacher(teacher: Teacher): Sequence[Course]
 
-  case class SchoolModuleImpl() extends SchoolModule:
+  object SchoolModuleImpl extends SchoolModule:
 
-    case class CourseImpl(name: String)
-    case class TeacherImpl(name: String, courses: Sequence[Course])
-    case class SchoolImpl(
+    case class Course(name: String)
+    case class Teacher(name: String, courses: Sequence[Course])
+    case class School(
         teachers: Sequence[Teacher],
         courses: Sequence[Course]
     )
-
-    type School = SchoolImpl
-    type Teacher = TeacherImpl
-    type Course = CourseImpl
 
     extension (school: School)
       def addTeacher(name: String): School = ???
