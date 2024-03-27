@@ -1,6 +1,8 @@
 package tasks.adts
+import u03.Sequences.Sequence.*
 import u03.Sequences.*
 import u03.Optionals.*
+import u03.Optionals.Optional.*
 import u02.AlgebraicDataTypes.Person
 
 /*  Exercise 2:
@@ -39,9 +41,14 @@ object SchoolModel:
     )
 
     extension (school: School)
-      def addTeacher(name: String): School = ???
+      def addTeacher(name: String): School =
+        School(Cons(Teacher(name, Nil()), school.teachers), school.courses)
       def addCourse(name: String): School = ???
-      def teacherByName(name: String): Optional[Teacher] = ???
+      def teacherByName(name: String): Optional[Teacher] =
+        school.teachers match {
+          case Cons(h, _) if h.name == name => Just(h)
+          case _                            => Empty()
+        }
       def courseByName(name: String): Optional[Course] = ???
       def nameOfTeacher(teacher: Teacher): String = ???
       def nameOfCourse(teacher: Teacher): String = ???
