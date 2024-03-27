@@ -16,4 +16,9 @@ class Ex2ShoolModelTest {
     val teacherSchool: School = emptySchool.addTeacher("Pianini")
     val teacher = teacherSchool.teacherByName("Pianini")
     assertEquals(Just(Teacher("Pianini", Nil())), teacher)
+
+  @Test def testAddCourse() =
+    val courseSchool: School = emptySchool.addCourse("Math")
+    val course = courseSchool.courseByName("Math")
+    assertEquals(Just(Course("Math")), course)
 }
