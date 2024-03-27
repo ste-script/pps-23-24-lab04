@@ -30,4 +30,24 @@ class Ex2ShoolModelTest {
     val course = Course("Math")
     assertEquals("Math", emptySchool.nameOfCourse(course))
 
+  @Test def testSetTeacherToCourse() =
+    val teacherSchool: School = emptySchool.addTeacher("Pianini")
+    val courseSchool: School = teacherSchool.addCourse("Math")
+    val teacher = teacherSchool.teacherByName("Pianini")
+    val course = courseSchool.courseByName("Math")
+    val newSchool =
+      courseSchool.setTeacherToCourse(
+        Optional.orElse(teacher, Teacher("", Nil())),
+        Optional.orElse(course, Course(""))
+      )
+    assertEquals(
+      Just(Teacher("Pianini", Cons(Course("Math"), Nil()))),
+      newSchool.teacherByName("Pianini")
+    )
+    assertEquals(
+      Cons(Course("Math"), Nil()),
+      newSchool.coursesOfATeacher(
+        Optional.orElse(newSchool.teacherByName("Pianini"), Teacher("", Nil()))
+      )
+    )
 }

@@ -59,5 +59,15 @@ object SchoolModel:
         teacher.name
       def nameOfCourse(course: Course): String =
         course.name
-      def setTeacherToCourse(teacher: Teacher, course: Course): School = ???
-      def coursesOfATeacher(teacher: Teacher): Sequence[Course] = ???
+      def setTeacherToCourse(teacher: Teacher, course: Course): School =
+        School(
+          Sequence.map(school.teachers)(t =>
+            val tName = school.nameOfTeacher(t)
+            if (tName == school.nameOfTeacher(teacher))
+              Teacher(tName, Cons(course, school.coursesOfATeacher(t)))
+            else t
+          ),
+          school.courses
+        )
+      def coursesOfATeacher(teacher: Teacher): Sequence[Course] =
+        teacher.courses
