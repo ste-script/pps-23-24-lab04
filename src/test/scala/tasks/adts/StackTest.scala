@@ -27,4 +27,4 @@ class Stacktest:
     assertEquals(Optional.Empty(), empty[Int].pop(10))
 
   @Test def testPopOnNotEmpty() =
-    assertEquals(Optional.Just((10, Sequence.Nil())), empty[Int].push(10).pop(10))
+    assertEquals(Optional.Just((10, Stack(Sequence.Nil()))), empty[Int].push(10).pop(10))
