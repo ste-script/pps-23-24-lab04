@@ -3,14 +3,14 @@ import u03.Sequences.*
 import u03.Optionals.*
 import u02.AlgebraicDataTypes.Person
 
-/*  Exercise 2: 
+/*  Exercise 2:
  *  Implement the below trait, and write a meaningful test.
- *  Suggestion: 
+ *  Suggestion:
  *  - reuse Sequences and Optionals as imported above
  *  - Course is a simple case classes with just the name
  *  - Teacher is a case class with name and sequence of courses
  *  - School is a case class with (sequences of) teachers and courses
- *  - add/set methods below create the new school 
+ *  - add/set methods below create the new school
  */
 
 object SchoolModel:
@@ -28,3 +28,26 @@ object SchoolModel:
       def nameOfCourse(teacher: Teacher): String
       def setTeacherToCourse(teacher: Teacher, course: Course): School
       def coursesOfATeacher(teacher: Teacher): Sequence[Course]
+
+  case class SchoolModuleImpl() extends SchoolModule:
+
+    case class CourseImpl(name: String)
+    case class TeacherImpl(name: String, courses: Sequence[Course])
+    case class SchoolImpl(
+        teachers: Sequence[Teacher],
+        courses: Sequence[Course]
+    )
+
+    type School = SchoolImpl
+    type Teacher = TeacherImpl
+    type Course = CourseImpl
+
+    extension (school: School)
+      def addTeacher(name: String): School = ???
+      def addCourse(name: String): School = ???
+      def teacherByName(name: String): Optional[Teacher] = ???
+      def courseByName(name: String): Optional[Course] = ???
+      def nameOfTeacher(teacher: Teacher): String = ???
+      def nameOfCourse(teacher: Teacher): String = ???
+      def setTeacherToCourse(teacher: Teacher, course: Course): School = ???
+      def coursesOfATeacher(teacher: Teacher): Sequence[Course] = ???
