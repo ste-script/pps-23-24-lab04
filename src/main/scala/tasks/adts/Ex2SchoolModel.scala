@@ -27,7 +27,7 @@ object SchoolModel:
       def teacherByName(name: String): Optional[Teacher]
       def courseByName(name: String): Optional[Course]
       def nameOfTeacher(teacher: Teacher): String
-      def nameOfCourse(teacher: Teacher): String
+      def nameOfCourse(course: Course): String
       def setTeacherToCourse(teacher: Teacher, course: Course): School
       def coursesOfATeacher(teacher: Teacher): Sequence[Course]
 
@@ -43,19 +43,21 @@ object SchoolModel:
     extension (school: School)
       def addTeacher(name: String): School =
         School(Cons(Teacher(name, Nil()), school.teachers), school.courses)
-      def addCourse(name: String): School = 
+      def addCourse(name: String): School =
         School(school.teachers, Cons(Course(name), school.courses))
       def teacherByName(name: String): Optional[Teacher] =
         school.teachers match {
-          case Cons(h, _) if h.name == name => Just(h)
-          case _                            => Empty()
+          case Cons(h, _) if school.nameOfTeacher(h) == name => Just(h)
+          case _                                             => Empty()
         }
-      def courseByName(name: String): Optional[Course] = 
+      def courseByName(name: String): Optional[Course] =
         school.courses match {
-          case Cons(h, _) if h.name == name => Just(h)
-          case _                            => Empty()
+          case Cons(h, _) if school.nameOfCourse(h) == name => Just(h)
+          case _                                            => Empty()
         }
-      def nameOfTeacher(teacher: Teacher): String = ???
-      def nameOfCourse(teacher: Teacher): String = ???
+      def nameOfTeacher(teacher: Teacher): String =
+        teacher.name
+      def nameOfCourse(course: Course): String =
+        course.name
       def setTeacherToCourse(teacher: Teacher, course: Course): School = ???
       def coursesOfATeacher(teacher: Teacher): Sequence[Course] = ???
