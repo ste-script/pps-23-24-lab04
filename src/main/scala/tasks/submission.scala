@@ -291,7 +291,6 @@ object Ex5Traversable:
 package tasks.monads
 
 import u04.monads.Monads.Monad
-import u04.monads.Monads.Monad
 
 /** Exercise 6: This module contains the implementation of a Try monad, which is
   * a monad that represents a computation that may fail. Try to follow these
